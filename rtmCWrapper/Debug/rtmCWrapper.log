@@ -1,0 +1,5 @@
+﻿  pch.cpp
+  dllmain.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(1216,5): warning MSB8012: TargetPath(C:\Users\dev\Documents\test\rtmCSharpWrapper\Debug\rtmCWrapper.dll) 与 Linker 的 OutputFile 属性值(C:\Users\dev\Documents\test\rtmCSharpWrapper\Debug\rtmWrapperDemo\binrtmCWrapper.dll)不匹配。这可能导致项目生成不正确。若要更正此问题，请确保 $(OutDir)、$(TargetName) 和 $(TargetExt) 属性值与 %(Link.OutputFile) 中指定的值匹配。
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(1218,5): warning MSB8012: TargetName(rtmCWrapper) 与 Linker 的 OutputFile 属性值(binrtmCWrapper)不匹配。这可能导致项目生成不正确。若要更正此问题，请确保 $(OutDir)、$(TargetName) 和 $(TargetExt) 属性值与 %(Link.OutputFile) 中指定的值匹配。
+  rtmCWrapper.vcxproj -> C:\Users\dev\Documents\test\rtmCSharpWrapper\Debug\rtmCWrapper.dll

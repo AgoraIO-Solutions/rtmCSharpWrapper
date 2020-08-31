@@ -227,7 +227,7 @@ extern "C"
 		void onMessageReceived(const char* userId, const agora::rtm::IMessage* message) override
 		{
 			//const char *channelId = utf82gbk(m_channeId);
-			std::string msg = utf82gbk(message->getText());
+			std::string msg = message->getText();
 
 			if (cmr != nullptr)
 				cmr(userId, "", msg.c_str());

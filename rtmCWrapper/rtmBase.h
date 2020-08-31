@@ -14,58 +14,6 @@
 // wrapper logger
 static std::ofstream logFile;
 
-std::string gbk2utf8(const char* gbk)
-{
-	std::string str;
-
-	if (gbk != NULL)
-	{
-		int len = MultiByteToWideChar(936, 0, gbk, -1, NULL, 0);
-		std::wstring strW;
-
-		strW.resize(len);
-
-		MultiByteToWideChar(936, 0, gbk, -1, (LPWSTR)strW.data(), len);
-
-		len = WideCharToMultiByte(CP_UTF8, 0, strW.data(), len - 1, NULL, 0, NULL, NULL);
-
-		str.resize(len);
-
-		WideCharToMultiByte(CP_UTF8, 0, strW.data(), -1, (LPSTR)str.data(), len, NULL, NULL);
-	}
-
-	return str;
-}
-
-std::string utf82gbk(const char* utf8)
-{
-	std::string str;
-
-	if (utf8 != NULL)
-	{
-		int len = MultiByteToWideChar(CP_UTF8, 0, utf8, -1, NULL, 0);
-		std::wstring strW;
-
-		strW.resize(len);
-
-		MultiByteToWideChar(CP_UTF8, 0, utf8, -1, (LPWSTR)strW.data(), len);
-
-		len = WideCharToMultiByte(936, 0, strW.data(), len - 1, NULL, 0, NULL, NULL);
-
-		str.resize(len);
-
-		WideCharToMultiByte(936, 0, strW.data(), -1, (LPSTR)str.data(), len, NULL, NULL);
-	}
-
-	return str;
-}
-
-std::string gbk2utf8(const std::string& gbk)
-{
-	return gbk2utf8(gbk.c_str());
-}
-
-
 extern "C"
 {
 	class PeerOnlineStatus
@@ -313,7 +261,7 @@ extern "C"
 
 	DllExport int sendMessageToPeer(const char* peerID, const char* msg, int offline) {
 		agora::rtm::IMessage* rtmMessage = rtmService->createMessage();
-		rtmMessage->setText(gbk2utf8(msg).c_str());
+		rtmMessage->setText(msg);
 		agora::rtm::SendMessageOptions so;
 		so.enableOfflineMessaging = offline != 0;
 		int ret = rtmService->sendMessageToPeer(peerID, rtmMessage, so);
@@ -342,7 +290,7 @@ extern "C"
 	DllExport int sendChannelMessageWithOptions(agora::rtm::IChannel* channelHandler, char const* msg, agora::rtm::SendMessageOptions *smo)
 	{
 		agora::rtm::IMessage* rtmMessage = rtmService->createMessage();
-		rtmMessage->setText(gbk2utf8(msg).c_str());
+		rtmMessage->setText(msg);
 		int res = channelHandler->sendMessage(rtmMessage, *smo);
 		rtmMessage->release();
 
